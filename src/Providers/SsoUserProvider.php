@@ -14,6 +14,10 @@ class SsoUserProvider implements UserProvider
     public const SESSION_TOKEN = "token";
     public const SESSION_SCOPES = "scopes";
 
+    public function register(): void
+    {
+    }
+
     public function retrieveById($identifier)
     {
         if (
@@ -48,5 +52,10 @@ class SsoUserProvider implements UserProvider
     public function rehashPasswordIfRequired(Authenticatable $user, array $credentials, bool $force = false)
     {
         throw new AuthenticationException('SSOUserProvider: retrieveByCredentials (não utilizado)');
+    }
+
+    public function isDeferred()
+    {
+        return false;
     }
 }
