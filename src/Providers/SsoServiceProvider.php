@@ -23,6 +23,16 @@ class SsoServiceProvider extends ServiceProvider
                 $app->make(Session::class)
             );
         });
+
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/sso.php',
+            'sso'
+        );
+
+        $this->publishes([
+            __DIR__.'/../config/sso.php' => config_path('sso.php'),
+        ], 'config');
+
         $this->registerRoutes();
     }
 
