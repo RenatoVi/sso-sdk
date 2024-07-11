@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Sso\SsoSdk\Providers;
 
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -18,9 +17,7 @@ class SsoServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Auth::provider('sso_users', function ($app) {
-            return new SsoUserProvider(
-                $app->make(Session::class)
-            );
+            return new SsoUserProvider();
         });
 
         $this->mergeConfigFrom(

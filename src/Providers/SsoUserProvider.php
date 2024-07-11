@@ -7,7 +7,6 @@ namespace Sso\SsoSdk\Providers;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\UserProvider;
-use Illuminate\Contracts\Session\Session;
 
 class SsoUserProvider implements UserProvider
 {
@@ -15,20 +14,13 @@ class SsoUserProvider implements UserProvider
     public const SESSION_TOKEN = "token";
     public const SESSION_SCOPES = "scopes";
 
-    protected $session;
-
-    public function __construct(
-        Session $session
-    ) {
-        $this->session = $session;
-    }
     public function retrieveById($identifier)
     {
         if (
-            $this->session->has(self::SESSION_USER)
-            && $this->session->get(self::SESSION_USER)->sso_id == $identifier
+            session()?->has(self::SESSION_USER)
+            && session()?->get(self::SESSION_USER)->sso_id == $identifier
         ) {
-            return $this->session->get(self::SESSION_USER);
+            return session()->get(self::SESSION_USER);
         }
         return null;
     }
