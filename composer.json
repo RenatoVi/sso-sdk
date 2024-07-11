@@ -37,8 +37,8 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Sso\\SsoSdk\\SsoServiceProvider",
-        "Sso\\SsoSdk\\SsoUserProvider"
+        "Sso\\SsoSdk\\Providers\\SsoServiceProvider",
+        "Sso\\SsoSdk\\Providers\\SsoUserProvider"
       ],
       "aliases": {
         "Sso": "Sso\\SsoSdk\\Facades\\Sso"
