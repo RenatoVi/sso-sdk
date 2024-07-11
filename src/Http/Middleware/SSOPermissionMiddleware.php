@@ -5,8 +5,8 @@ namespace Sso\SsoSdk\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use Spatie\Permission\Guard;
 use Sso\SsoSdk\Exceptions\UnauthorizedException;
+use Symfony\Component\HttpFoundation\Response;
 
 class SSOPermissionMiddleware
 {
@@ -29,7 +29,7 @@ class SSOPermissionMiddleware
             throw UnauthorizedException::notLoggedIn();
         }
 
-        $response = Http::baseUrl(config('sso.partnership'))
+        $response = Http::baseUrl(config('sso.url'))
             ->acceptJson()
             ->withToken($token)
             ->withHeader('partnership', config('sso.partnership'))
@@ -38,7 +38,7 @@ class SSOPermissionMiddleware
                 'guard' => $guard,
             ]);
 
-        if (! $user->canAny($permissions)) {
+        if ($response->status() !== Response::HTTP_OK) {
             throw UnauthorizedException::forPermissions($permissions);
         }
 

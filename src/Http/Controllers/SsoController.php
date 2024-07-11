@@ -20,7 +20,7 @@ class SsoController extends Controller
             throw new \RuntimeException('Token is missing');
         }
 
-        $response = Http::baseUrl(config('sso.partnership'))
+        $response = Http::baseUrl(config('sso.url'))
             ->acceptJson()
             ->withToken($token)
             ->withHeader('partnership', config('sso.partnership'))
