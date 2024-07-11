@@ -1,0 +1,57 @@
+{
+  "name": "sso/sso-sdk",
+  "description": "A simple SDK for the SSO API",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "role": "Developer",
+      "name": "Renato Viana",
+      "email": "renatovisouza@gmail.com.br",
+      "homepage": "https://techgenus.com.br"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "^7.0",
+    "illuminate/http": "^10.0|^11.0",
+    "illuminate/support": "^10.0|^11.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^8.16|^9.0",
+    "pestphp/pest": "^2.34",
+    "phpstan/phpstan": "^1.10",
+    "phpunit/phpunit": "^10.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Sso\\SooSdk\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Sso\\SooSdk\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Sso\\SooSdk\\SooServiceProvider",
+        "Sso\\SooSdk\\SooUserProvider"
+      ],
+      "aliases": {
+        "Doodle": "Sso\\SooSdk\\Facades\\Soo"
+      }
+    }
+
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
