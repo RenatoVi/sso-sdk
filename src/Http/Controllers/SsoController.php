@@ -1,12 +1,12 @@
 <?php
 
-namespace Sso\SooSdk\Http\Controllers;
+namespace Sso\SsoSdk\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use Sso\SooSdk\Providers\SsoUserProvider;
+use Sso\SsoSdk\Providers\SsoUserProvider;
 
 class SsoController extends Controller
 {

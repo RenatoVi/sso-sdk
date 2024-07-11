@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Sso\SooSdk\Providers;
+namespace Sso\SsoSdk\Providers;
 
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\Authenticatable;

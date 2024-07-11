@@ -1,6 +1,6 @@
 <?php
 
-namespace Sso\SooSdk\Facades;
+namespace Sso\SsoSdk\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

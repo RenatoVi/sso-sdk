@@ -26,22 +26,22 @@
   },
   "autoload": {
     "psr-4": {
-      "Sso\\SooSdk\\": "src/"
+      "Sso\\SsoSdk\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Sso\\SooSdk\\Tests\\": "tests/"
+      "Sso\\SsoSdk\\Tests\\": "tests/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Sso\\SooSdk\\SooServiceProvider",
-        "Sso\\SooSdk\\SooUserProvider"
+        "Sso\\SsoSdk\\SsoServiceProvider",
+        "Sso\\SsoSdk\\SsoUserProvider"
       ],
       "aliases": {
-        "Doodle": "Sso\\SooSdk\\Facades\\Soo"
+        "Sso": "Sso\\SsoSdk\\Facades\\Sso"
       }
     }
 

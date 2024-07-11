@@ -1,6 +1,6 @@
 <?php
 
-namespace Sso\SooSdk\Exceptions;
+namespace Sso\SsoSdk\Exceptions;
 
 use Exception;
 use Illuminate\Contracts\Auth\Access\Authorizable;

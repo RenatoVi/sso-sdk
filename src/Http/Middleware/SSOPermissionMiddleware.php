@@ -1,12 +1,12 @@
 <?php
 
-namespace Sso\SooSdk\Http\Middleware;
+namespace Sso\SsoSdk\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Spatie\Permission\Guard;
-use Sso\SooSdk\Exceptions\UnauthorizedException;
+use Sso\SsoSdk\Exceptions\UnauthorizedException;
 
 class SSOPermissionMiddleware
 {
