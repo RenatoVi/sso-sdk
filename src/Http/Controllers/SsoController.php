@@ -42,4 +42,24 @@ class SsoController extends Controller
 
         return redirect('/');
     }
+
+    public function auth(Request $request)
+    {
+        $token = $request->token;
+        if (!$token) {
+            throw new \RuntimeException('Token is missing');
+        }
+
+        $response = Http::baseUrl(config('sso.url'))
+            ->acceptJson()
+            ->withToken($token)
+            ->withHeader('partnership', config('sso.partnership'))
+            ->get('api/user/auth');
+
+        if ($response->status() !== 200) {
+            throw new \RuntimeException('Unauthorized', $response->status());
+        }
+
+        return $response->json();
+    }
 }
