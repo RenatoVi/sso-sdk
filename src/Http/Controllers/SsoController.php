@@ -54,7 +54,7 @@ class SsoController extends Controller
             ->acceptJson()
             ->withToken($token)
             ->withHeader('partnership', config('sso.partnership'))
-            ->get('api/user/auth');
+            ->get('api/user/access-token');
 
         if ($response->status() !== 200) {
             throw new \RuntimeException('Unauthorized', $response->status());
