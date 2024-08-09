@@ -46,6 +46,10 @@ class SsoService
             ? $permission
             : explode('|', $permission);
 
+        if (is_null($guard) && !empty(config('sso.default_guard'))) {
+            $guard = (string) config('sso.default_guard');
+        }
+
         $response = $this->getClient()
             ->withToken($token)
             ->post('api/user/check-permissions', [
