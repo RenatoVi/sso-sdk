@@ -13,6 +13,7 @@ class SsoService
     {
         return config('sso.enabled');
     }
+
     private function getClient(): PendingRequest
     {
         return Http::baseUrl(config('sso.url'))
