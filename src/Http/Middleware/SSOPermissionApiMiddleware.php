@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Sso\SsoSdk\Exceptions\UnauthorizedException;
+use Sso\SsoSdk\Facades\Sso;
 use Symfony\Component\HttpFoundation\Response;
 
 class SSOPermissionApiMiddleware
@@ -18,21 +19,8 @@ class SSOPermissionApiMiddleware
             throw UnauthorizedException::notLoggedIn();
         }
 
-        $permissions = is_array($permission)
-            ? $permission
-            : explode('|', $permission);
-
-        $response = Http::baseUrl(config('sso.url'))
-            ->acceptJson()
-            ->withToken($token)
-            ->withHeader('partnership', config('sso.partnership'))
-            ->post('api/user/check-permissions', [
-                'permissions' => $permissions,
-                'guard' => $guard,
-            ]);
-
-        if ($response->status() !== Response::HTTP_OK) {
-            throw UnauthorizedException::forPermissions($permissions);
+        if (!Sso::checkPermissions($token, $permission, $guard)) {
+            throw UnauthorizedException::forPermissions();
         }
 
         return $next($request);

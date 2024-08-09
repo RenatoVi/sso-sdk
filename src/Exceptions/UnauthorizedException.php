@@ -23,7 +23,7 @@ class UnauthorizedException extends HttpException
         return $exception;
     }
 
-    public static function forPermissions(array $permissions): self
+    public static function forPermissions(array $permissions = []): self
     {
         $message = 'User does not have the right permissions.';
 
