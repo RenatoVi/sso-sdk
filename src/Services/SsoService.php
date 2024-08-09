@@ -38,7 +38,7 @@ class SsoService
 
     public function checkPermissions(
         string $token,
-        string|array $permission,
+        string|array|null $permission,
         ?string $guard = null
     ): bool
     {
