@@ -65,7 +65,7 @@ class SsoService
     /**
      * @throws ConnectionException
      */
-    public function existDocument(bool $token): array
+    public function existDocument(string $token): array
     {
         $response = $this->getClient()
             ->withToken($token)
