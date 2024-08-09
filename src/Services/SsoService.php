@@ -65,7 +65,7 @@ class SsoService
     /**
      * @throws ConnectionException
      */
-    public function user(string $token): array
+    public function user(string $token, bool $asObject = false): array|object
     {
         $response = $this->getClient()
             ->withToken($token)
@@ -75,6 +75,9 @@ class SsoService
             throw new \RuntimeException('Unauthorized');
         }
 
+        if ($asObject) {
+            return (object) $response->json();
+        }
         return $response->json();
     }
 }
