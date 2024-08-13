@@ -20,6 +20,7 @@ class SSOPermissionApiMiddleware
         }
 
         if (!Sso::checkPermissions($token, $permission, $guard)) {
+            $permissions = is_array($permission) ? $permission : [$permission];
             throw UnauthorizedException::forPermissions();
         }
 
