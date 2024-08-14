@@ -36,6 +36,17 @@ class SsoService
         return $response->json();
     }
 
+    public function validateTwoFactorCode(string $token, string|int $code): bool
+    {
+        $response = $this->getClient()
+            ->withToken($token)
+            ->get('api/user/confirm-code');
+        if ($response->status() !== 200) {
+            return false;
+        }
+        return true;
+    }
+
     public function checkPermissions(
         string $token,
         string|array|null $permission,
