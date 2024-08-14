@@ -10,6 +10,7 @@ use Sso\SsoSdk\Services\SsoService;
  * @method static array accessToken(string $redirectToken)
  * @method static bool checkPermissions(string $token, string|array $permission, ?string $guard = null)
  * @method static array|object user(string $token, bool $asObject = false)
+ * @method static bool validateTwoFactorCode(string $token, string|int $code)
  */
 class Sso extends Facade
 {
