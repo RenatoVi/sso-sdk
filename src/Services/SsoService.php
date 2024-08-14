@@ -40,7 +40,9 @@ class SsoService
     {
         $response = $this->getClient()
             ->withToken($token)
-            ->post('api/user/confirm-code');
+            ->post('api/user/confirm-code', [
+                'code' => $code,
+            ]);
         if ($response->status() !== 200) {
             return false;
         }
