@@ -93,4 +93,50 @@ class SsoService
         }
         return $response->json();
     }
+
+    /**
+     * Check password admin
+     */
+    public function checkPassword(string $password, string $token): bool
+    {
+        $response = $this->getClient()
+            ->withToken($token)
+            ->post('api/user/check-password', [
+                'password' => $password
+            ]);
+
+        if ($response->status() !== 200) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function relogin(string $password, string $token): object
+    {
+        $response = $this->getClient()
+            ->withToken($token)
+            ->post('api/user/relogin', [
+                'password' => $password
+            ]);
+
+        if ($response->status() !== 200) {
+            throw new \RuntimeException('Unauthorized');
+        }
+
+        return (object) $response->json();
+    }
+
+    public function logout(string $token): array
+    {
+        $response = $this->getClient()
+            ->withToken($token)
+            ->post('api/user/logout');
+
+        if ($response->status() !== 200) {
+            throw new \RuntimeException('Unauthorized');
+        }
+
+        return $response->json();
+    }
 }
