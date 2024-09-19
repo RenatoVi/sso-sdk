@@ -14,11 +14,20 @@ class SsoService
         return config('sso.enabled');
     }
 
+    public function getPartnership()
+    {
+        if (config('sso.partnership_get_type') == 'settings') {
+            return app(ExternalAPISettings::class)->sso_partnership;
+        }
+
+        return config('sso.partnership');
+    }
+
     private function getClient(): PendingRequest
     {
         return Http::baseUrl(config('sso.url'))
             ->acceptJson()
-            ->withHeader('partnership', config('sso.partnership'));
+            ->withHeader('partnership', $this->getPartnership());
     }
 
     /**
