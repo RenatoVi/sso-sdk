@@ -24,7 +24,7 @@ class SsoController extends Controller
         $response = Http::baseUrl(config('sso.url'))
             ->acceptJson()
             ->withToken($token)
-            ->withHeader('partnership', config('sso.partnership'))
+            ->withHeader('partnership', Sso::getPartnership())
             ->get('api/user/access-token');
 
         if ($response->status() !== 200) {
